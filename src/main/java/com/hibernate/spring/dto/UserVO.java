@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="users")
+@Table(name="user_info")
 public class UserVO {
 	
 	@Id
@@ -40,6 +40,4 @@ public class UserVO {
 	private String user_last_login_date;
 	
 	private Integer user_trust;
-	
-	private String user_thirdparty_type;
 }
