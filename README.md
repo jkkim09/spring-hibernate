@@ -87,3 +87,16 @@ spring:
 
 - spring.jpa.hibernate.ddl-auto: sessionFactory가 올라갈 때, DBMS의 스키마를 자동으로 수정하거나 검증하는 설정 값. (none/create/create-drop/update/validate)
 - show-sql: console에 JPA 실행 SQL Log 유무. true/false
+
+### 용어 정리
+
+@Entity : DB 테이블에 대응하는 하나의 클래스를 정의 
+- name : Entity들간의 충돌이 될때나 이름을 설정해준다. 설정을 안하면 default는 Class명으로 설정된다.
+
+(기본 생성자 필수, final, enum, interface, inner 클래스 사용 못함, 저장 필드에 final 사용 못함)
+
+@Table : Entity와 매핑할 DB Table을 지정 한다.
+- name : 매핑할 table 이름, 기본은 Entity 이름을 사용한다.
+- catalog : catalog 기능이 있는 DB에서 catalog를 매핑
+- schema : schema 기능이 있는 DB에서 schema를 매핑
+- uniqueConstraints : DDL 생성 시에 유니크 제약조건을 만든다.
