@@ -16,8 +16,8 @@ public class UserVO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_number")
-	private Integer user_number;
+	@Column(name="user_number")
+	private Integer userNumber;
 	
 	private String user_identify_code;
 
