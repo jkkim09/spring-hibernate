@@ -36,7 +36,7 @@ node_modules
 ### logs
 /logs/
 
-application.yml
+# application.yml
 gradle
 .gradle
 bin
