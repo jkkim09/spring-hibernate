@@ -11,6 +11,6 @@ public class UserService {
 	UserRepository userRepository;
 	
 	public void getUser() {
-		userRepository.findUserVOByUserNumber(3).forEach(user -> System.out.println(user.getUser_join_date()));
+		userRepository.findUserVOByUserNumber(3).forEach(user -> System.out.println(user));
 	}
 }
