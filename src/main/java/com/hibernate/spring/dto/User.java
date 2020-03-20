@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="user_info")
-public class UserVO {
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +21,8 @@ public class UserVO {
 	
 	private String user_identify_code;
 
-	private Integer user_type;
+	@Column(name="user_type")
+	private int userType;
 	
 	private Integer user_authorization;
 	
