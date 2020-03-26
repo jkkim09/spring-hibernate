@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hibernate.spring.dto.User;
+import com.hibernate.spring.entity.User;
+import com.hibernate.spring.entity.UserInfo;
 import com.hibernate.spring.service.UserService;
 
 @RestController
@@ -21,9 +22,9 @@ public class MainController {
 	@RequestMapping("/test")
 	public String test() {
 //		userService.getUser();
-		ArrayList<User> items =  userService.test();
+		ArrayList<UserInfo> items =  userService.test();
 		
-		for(User vo : items) {
+		for(UserInfo vo : items) {
 			System.out.println("test");
 			System.out.println(vo.getUser_join_date());
 		}

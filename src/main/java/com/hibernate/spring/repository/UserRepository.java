@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.hibernate.spring.dto.User;
+import com.hibernate.spring.entity.UserInfo;
 
-public interface UserRepository extends JpaRepository<User, Integer>  {
-	List<User> findUserByUserNumber(int user_number);
-	ArrayList<User> findByUserType(int user_type);
+public interface UserRepository extends JpaRepository<UserInfo, Integer>  {
+	List<UserInfo> findUserByUserNumber(int user_number);
+	ArrayList<UserInfo> findByUserType(int user_type);
 }

@@ -1,4 +1,4 @@
-package com.hibernate.spring.dto;
+package com.hibernate.spring.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="user_info")
-public class User {
+public class UserInfo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

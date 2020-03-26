@@ -1,4 +1,4 @@
-package com.hibernate.spring.dto;
+package com.hibernate.spring.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
