@@ -1,5 +1,6 @@
 package com.hibernate.spring.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,10 @@ import lombok.Data;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long user_number;
+	@Column(name="user_number")
+	private long userNumber;
+	
+	private String user_name;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_number")
