@@ -17,11 +17,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="user_number")
-	private long userNumber;
+	private long usernumber;
 	
-	private String user_name;
+	@Column(name="user_name")
+	private String username;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "team_number")
+	@JoinColumn(name = "team_number", nullable = false)
 	Team team;
 }

@@ -1,7 +1,6 @@
 package com.hibernate.spring.service;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +20,35 @@ public class UserService {
 	
 	public void save() {
 		Team team = new Team();
-		team.setTeam_name("atime");
+		team.setTeam_name("ateam");
 		teamRepository.save(team);
 		
 		User user = new User();
-		user.setUser_name("±èÀÚ°æ");
+		user.setUsername("±èÀÚ°æ");
 		user.setTeam(team);
 		userRepository.save(user);
 	}
 	
 	public void getUser(long user_number) {
-		System.out.println(userRepository.findUserByUserNumber(user_number));
+//		Optional<User> users = userRepository.findById(user_number);
+//		System.out.println(users.get().getTeam().getTeam_name());
+//		List<User> users2 = userRepository.findByUsername("±èÀÚ°æ");
+//		for(User user : users2) {
+//			System.out.println(user.getUsernumber());
+//		}
+		getUserManager();
+	}
+	
+	@Transactional
+	public void getUserManager() {
+			User user = new User();
+			Team team = new Team();
+			team.setTeam_name("bteam");
+			teamRepository.save(team);
+			
+			// team number °¡ not null ÀÌ±â¶§¹®¿¡ 
+//			user.setTeam(team);
+			user.setUsername("±èÀÚ°æ 4");
+			userRepository.save(user);			
 	}
 }

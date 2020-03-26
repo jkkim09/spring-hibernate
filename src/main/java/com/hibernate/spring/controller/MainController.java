@@ -23,6 +23,7 @@ public class MainController {
 	
 	@RequestMapping("/getUser/{userNumber}")
 	public String getUsser(@PathVariable long userNumber) {
+		System.out.println("getUser : "+ userNumber);
 		userService.getUser(userNumber);
 		return "getUser";
 	}

@@ -1,12 +1,10 @@
 package com.hibernate.spring.entity;
 
-import java.util.List;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -18,8 +16,6 @@ public class Team {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long team_number;
 	
+	@Column(nullable = false)
 	private String team_name;
-	
-	@OneToMany(mappedBy = "team")
-    private List<User> user;
 }
