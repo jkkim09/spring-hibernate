@@ -43,9 +43,10 @@ public class UserService {
 	public void getUserManager() {
 			User user = new User();
 			Team team = new Team();
-			team.setTeam_name("bteam");
-			teamRepository.save(team);
-			
+//			team.setTeam_name("bteam");
+//			teamRepository.save(team);
+			team.setTeam_number(1);
+			teamRepository.delete(team);
 			// team number 가 not null 이기때문에 
 //			user.setTeam(team);
 			user.setUsername("김자경 4");
