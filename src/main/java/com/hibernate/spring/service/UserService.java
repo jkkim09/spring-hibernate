@@ -1,5 +1,6 @@
 package com.hibernate.spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.hibernate.spring.entity.AllParent;
 import com.hibernate.spring.entity.Team;
 import com.hibernate.spring.entity.User;
+import com.hibernate.spring.repository.AllParentRepository;
 import com.hibernate.spring.repository.TeamRepository;
 import com.hibernate.spring.repository.UserRepository;
 import com.hibernate.spring.repository.UserServiceRepository;
@@ -24,13 +27,16 @@ public class UserService {
 	@Autowired
 	UserServiceRepository userServiceRepository;
 	
+	@Autowired
+	AllParentRepository allRepository;
+	
 	public void save() {
 		Team team = new Team();
 		team.setTeam_name("ateam");
 		teamRepository.save(team);
 		
 		User user = new User();
-		user.setUsername("±èÀÚ°æ");
+		user.setUsername("±èÀÚ°æ2");
 		user.setTeam(team);
 		userRepository.save(user);
 	}
@@ -77,6 +83,15 @@ public class UserService {
 	public void getUserService() {
 		Optional<com.hibernate.spring.entity.UserService> userService = userServiceRepository.findById(1L);
 		System.out.println(userService);
+	}
+	
+	public void getAll() {
+		Optional<AllParent> all = allRepository.findById(1L);
+		List<User> users = all.get().getUser();
+		System.out.println(users);
+		for(User user: users) {
+			System.out.println(user);
+		}
 	}
 	
 }

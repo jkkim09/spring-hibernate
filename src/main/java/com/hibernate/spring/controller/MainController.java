@@ -61,4 +61,9 @@ public class MainController {
 	public void transactional() {
 		userService.transactional();
 	}
+	
+	@RequestMapping("/getAll")
+	public void getAll() {
+		userService.getAll();
+	}
 }

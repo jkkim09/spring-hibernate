@@ -22,4 +22,8 @@ public class UserService {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_number")
 	User user;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "team_number")
+	Team Team;
 }
