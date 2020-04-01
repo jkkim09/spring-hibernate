@@ -52,28 +52,10 @@ sourceSets {
     main.java.srcDir querydslDir
 }
 
-task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
-    file(new File(projectDir, "/src/main/generated")).deleteDir()
-    file(new File(projectDir, "/src/main/generated")).mkdirs()
-    source = sourceSets.main.java
-    classpath = configurations.compile + configurations.compileOnly
-    options.compilerArgs = [
-            "-proc:only",
-            "-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor",
-            "-processor", 'com.querydsl.apt.jpa.JPAAnnotationProcessor,lombok.launch.AnnotationProcessorHider$AnnotationProcessor'
-    ]
-    destinationDir = file('src/main/generated')
-}
-
 configurations {
 	querydsl.extendsFrom compileClasspath
 }
 
 compileQuerydsl {
 	options.annotationProcessorPath = configurations.querydsl
-}
-
-
-clean.doLast {
-    file(new File(projectDir, "/src/main/generated")).deleteDir()
 }
