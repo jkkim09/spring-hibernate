@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	id 'java'
 }
 
@@ -8,21 +9,71 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor 
+	}
+}
+
 repositories {
 	mavenCentral()
 }
 
+def queryDSLVersion = '4.2.1'
+def generated = "src/main/generated"
+
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	//querydsl 추가
+	implementation 'com.querydsl:querydsl-jpa'
+	compileOnly 'org.projectlombok:lombok'
+	compileOnly "com.querydsl:querydsl-apt:${queryDSLVersion}"
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') { 
+		exclude group: 'org.junit.vintage',
+		module: 'junit-vintage-engine'
 	}
-	
-	compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("mysql:mysql-connector-java")
-    implementation 'org.projectlombok:lombok'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+//querydsl 추가 시
+def querydslDir = "$buildDir/generated/querydsl"
+querydsl {
+ 	jpa = true
+ 	querydslSourcesDir = querydslDir
+ }
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
+    file(new File(projectDir, "/src/main/generated")).deleteDir()
+    file(new File(projectDir, "/src/main/generated")).mkdirs()
+    source = sourceSets.main.java
+    classpath = configurations.compile + configurations.compileOnly
+    options.compilerArgs = [
+            "-proc:only",
+            "-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor",
+            "-processor", 'com.querydsl.apt.jpa.JPAAnnotationProcessor,lombok.launch.AnnotationProcessorHider$AnnotationProcessor'
+    ]
+    destinationDir = file('src/main/generated')
+}
+
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+
+
+clean.doLast {
+    file(new File(projectDir, "/src/main/generated")).deleteDir()
 }

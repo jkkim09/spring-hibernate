@@ -1,12 +1,10 @@
 package com.hibernate.spring.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.hibernate.spring.entity.AllParent;
 import com.hibernate.spring.entity.Team;
@@ -15,6 +13,7 @@ import com.hibernate.spring.repository.AllParentRepository;
 import com.hibernate.spring.repository.TeamRepository;
 import com.hibernate.spring.repository.UserRepository;
 import com.hibernate.spring.repository.UserServiceRepository;
+
 
 @Service
 public class UserService {
@@ -71,9 +70,7 @@ public class UserService {
 			team.setTeam_name("bteam");
 			teamRepository.save(team);
 
-			// team number 가 not null 이기때문에 exception 발생
 			// rollback
-			
 //			user.setTeam(team);
 			user.setUsername("김자경 4");
 			userRepository.save(user);			
@@ -93,5 +90,4 @@ public class UserService {
 			System.out.println(user);
 		}
 	}
-	
 }
