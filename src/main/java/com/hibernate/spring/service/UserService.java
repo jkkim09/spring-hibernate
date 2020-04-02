@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hibernate.spring.entity.AllParent;
+import com.hibernate.spring.entity.QUser;
 import com.hibernate.spring.entity.Team;
 import com.hibernate.spring.entity.User;
 import com.hibernate.spring.repository.AllParentRepository;
@@ -65,6 +66,7 @@ public class UserService {
 	}
 	
 	public void transactional() {
+		
 			User user = new User();
 			Team team = new Team();
 			team.setTeam_name("bteam");
