@@ -23,7 +23,6 @@ public class UserService {
 	@Autowired
 	UserRepositorySupport userRepositoryySupport;
 	
-	
 	@Autowired
 	TeamRepository teamRepository;
 	
@@ -32,7 +31,7 @@ public class UserService {
 	
 	@Autowired
 	AllParentRepository allRepository;
-	
+	 
 	public void save() {
 		Team team = new Team();
 		team.setTeam_name("ateam");
@@ -69,16 +68,20 @@ public class UserService {
 	}
 	
 	public void transactional() {
-		
-			User user = new User();
-			Team team = new Team();
-			team.setTeam_name("bteam");
-			teamRepository.save(team);
-
-			// rollback
-//			user.setTeam(team);
-			user.setUsername("aaaa");
-			userRepository.save(user);			
+			try {
+				User user = new User();
+				Team team = new Team();
+				team.setTeam_name("bteam");
+				teamRepository.save(team);
+				
+				// rollback
+//				user.setTeam(team);
+				user.setUsername("aaaa");
+				userRepository.save(user);							
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("catch transactional");
+			} 
 	}
 	
 	
@@ -105,5 +108,13 @@ public class UserService {
 		User user = users.get(2);
 		System.out.println(user.getTeam());
 		System.out.println(user.getTeam().getTeam_name());
+	}
+	
+	public void orderBy() {
+		System.out.println(userRepositoryySupport.orderBy());
+	}
+	
+	public void join() {
+		userRepositoryySupport.join();
 	}
 }

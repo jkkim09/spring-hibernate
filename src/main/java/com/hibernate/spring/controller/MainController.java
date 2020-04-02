@@ -69,4 +69,14 @@ public class MainController {
 	public void queryDSL() {
 		userService.queryDSL();
 	}
+	
+	@RequestMapping("/orderBy")
+	public void orderBy() {
+		userService.orderBy();
+	}
+	
+	@RequestMapping("/join")
+	public void join() {
+		userService.join();
+	}
 }
