@@ -1,10 +1,7 @@
 package com.hibernate.spring.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.jws.soap.SOAPBinding.Use;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,8 +99,11 @@ public class UserService {
 	public void queryDSL() {
 		System.out.println("queryDSL");
 		List<User> users = userRepositoryySupport.QfindByUsername("aaaa");
-		for(User user : users) {
-			System.out.println(user);
-		}
+//		for(User user : users) {
+//			System.out.println(user);
+//		}
+		User user = users.get(2);
+		System.out.println(user.getTeam());
+		System.out.println(user.getTeam().getTeam_name());
 	}
 }
