@@ -79,4 +79,9 @@ public class MainController {
 	public void join() {
 		userService.join();
 	}
+	
+	@RequestMapping("/serviceJoin")
+	public void serviceJoin() {
+		userService.serviceJoin();
+	}
 }

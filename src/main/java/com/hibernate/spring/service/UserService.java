@@ -117,4 +117,8 @@ public class UserService {
 	public void join() {
 		userRepositoryySupport.join();
 	}
+	
+	public void serviceJoin() {
+		userRepositoryySupport.serviceJoin();
+	}
 }

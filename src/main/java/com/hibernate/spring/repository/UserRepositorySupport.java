@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hibernate.spring.entity.QTeam;
 import com.hibernate.spring.entity.QUser;
+import com.hibernate.spring.entity.QUserService;
 import com.hibernate.spring.entity.User;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -37,8 +38,11 @@ public class UserRepositorySupport extends QuerydslRepositorySupport{
 		List<User> list = (List<User>) queryFactory.from(user).innerJoin(user.team, team).fetchJoin().fetch();
 //		List list = queryFactory.from(user).innerJoin(user.team, team).fetch();
 		System.out.println(list);
-		for(User item : list) {
-			System.out.println(item.getTeam().getTeam_number());
-		}
+	}
+	
+	public void serviceJoin() {
+		QUserService userService = QUserService.userService;
+		QTeam team = QTeam.team;
+		System.out.println(queryFactory.from(userService).innerJoin(userService.Team, team).fetchJoin().fetch());
 	}
 }
