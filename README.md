@@ -147,7 +147,7 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 4. 동적 쿼리
 
 ##### 1번
-"select * from table" 로하던 몬자 query를  query.selectFrom(m).where(m.age.gt(18)) 처럼 코드로 작성할 수 있다.
+"select * from table" 로하던 문자 query를  query.selectFrom(m).where(m.age.gt(18)) 처럼 코드로 작성할 수 있다.
 
 ##### 2번
 query가 문자로 되어있으면 오타 ("selectt * from table") 되어이으면 컴파일 시점에서는 알 수가 없다. 서버가 실행되고 해당 query를 요청하는 api가 요청이 있기전까지는 하지만 queryDSL을 이용하면 코드 형식이기때문에 오류를 알 수 있게된다.
