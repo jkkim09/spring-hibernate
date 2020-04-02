@@ -64,4 +64,9 @@ public class MainController {
 	public void getAll() {
 		userService.getAll();
 	}
+
+	@RequestMapping("/queryDSL")
+	public void queryDSL() {
+		userService.queryDSL();
+	}
 }
