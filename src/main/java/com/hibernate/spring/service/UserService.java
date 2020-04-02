@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hibernate.spring.entity.AllParent;
-import com.hibernate.spring.entity.QUser;
 import com.hibernate.spring.entity.Team;
 import com.hibernate.spring.entity.User;
 import com.hibernate.spring.repository.AllParentRepository;
@@ -36,7 +35,7 @@ public class UserService {
 		teamRepository.save(team);
 		
 		User user = new User();
-		user.setUsername("±èÀÚ°æ2");
+		user.setUsername("aaaa");
 		user.setTeam(team);
 		userRepository.save(user);
 	}
@@ -44,7 +43,7 @@ public class UserService {
 	public void update(long user_number) {
 		User user = new User();
 		user.setUsernumber(user_number);
-		user.setUsername("±èÀÚ°æ 10");
+		user.setUsername("aaaa");
 		Optional<User> user_info = userRepository.findById(user_number);
 		Team user_tream = user_info.get().getTeam();
 		user.setTeam(user_tream);
@@ -54,7 +53,7 @@ public class UserService {
 	public void getUser(long user_number) {
 		Optional<User> users = userRepository.findById(user_number);
 		System.out.println(users.get().getTeam().getTeam_name());
-		List<User> users2 = userRepository.findByUsername("±èÀÚ°æ");
+		List<User> users2 = userRepository.findByUsername("aaaa");
 		for(User user : users2) {
 			System.out.println(user.getUsernumber());
 		}
@@ -74,7 +73,7 @@ public class UserService {
 
 			// rollback
 //			user.setTeam(team);
-			user.setUsername("±èÀÚ°æ 4");
+			user.setUsername("aaaa");
 			userRepository.save(user);			
 	}
 	
