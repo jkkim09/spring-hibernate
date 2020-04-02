@@ -20,6 +20,7 @@ import com.hibernate.spring.repository.UserServiceRepository;
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
+	
 	@Autowired
 	UserRepositorySupport userRepositoryySupport;
 	
