@@ -25,7 +25,7 @@ def generated = "src/main/generated"
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//querydsl Ãß°¡
+	//querydsl ï¿½ß°ï¿½
 	implementation 'com.querydsl:querydsl-jpa'
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly "com.querydsl:querydsl-apt:${queryDSLVersion}"
@@ -41,7 +41,7 @@ test {
 	useJUnitPlatform()
 }
 
-//querydsl Ãß°¡ ½Ã
+//querydsl
 def querydslDir = "src/main/generated"
 querydsl {
 	library = 'com.querydsl:querydsl-apt'
