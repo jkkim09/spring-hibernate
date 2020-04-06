@@ -2,6 +2,7 @@ package com.hibernate.spring.config;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.xml.transform.Source;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ public class QuerydslConfiguration {
 
     @Bean
     public JPAQueryFactory jpaQueryFactory() {
+    	System.out.println("test jpaQueryFactory entityManager");
         return new JPAQueryFactory(entityManager);
     }
 }

@@ -24,9 +24,5 @@ public class AllParent {
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="parent_id")
-	private List<User> user = new ArrayList<User>();
-	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name="parent_id")
 	private List<Team> team = new ArrayList<Team>();
 }

@@ -25,4 +25,8 @@ public class User {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_number", nullable = false)
 	Team team;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_id", nullable = false)
+	AllParent parent;
 }

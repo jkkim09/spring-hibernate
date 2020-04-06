@@ -2,6 +2,10 @@ package com.hibernate.spring.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,7 @@ import com.hibernate.spring.repository.TeamRepository;
 import com.hibernate.spring.repository.UserRepository;
 import com.hibernate.spring.repository.UserRepositorySupport;
 import com.hibernate.spring.repository.UserServiceRepository;
+import com.hibernate.spring.thread.DbTreadImp;
 
 
 @Service
@@ -91,15 +96,6 @@ public class UserService {
 		System.out.println(userService);
 	}
 	
-	public void getAll() {
-		Optional<AllParent> all = allRepository.findById(1L);
-		List<User> users = all.get().getUser();
-		System.out.println(users);
-		for(User user: users) {
-			System.out.println(user);
-		}
-	}
-	
 	public void queryDSL() {
 		System.out.println("queryDSL");
 		List<User> users = userRepositoryySupport.QfindByUsername("aaaa");
@@ -121,5 +117,22 @@ public class UserService {
 	
 	public void serviceJoin() {
 		userRepositoryySupport.serviceJoin();
+	}
+	
+	public void threadSave() {
+		ExecutorService service = Executors.newCachedThreadPool();
+		DbTreadImp tr = new DbTreadImp(teamRepository);
+		for (int a = 0; a<3; a++) {
+			service.execute(tr);
+		}
+		service.shutdown();
+	}
+	
+	public void whereIn() {
+		userRepositoryySupport.whereIn();
+	}
+	
+	public void twoJoin() {
+		userRepositoryySupport.twoJoin();
 	}
 }
