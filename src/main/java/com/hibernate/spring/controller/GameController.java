@@ -28,6 +28,9 @@ public class GameController {
 	public String getItem() {
 		System.out.println("/api/v2/getItem");
 		System.out.println(gameService.getItem());
+		for (Item item : gameService.getItem()) {
+			System.out.println(item.getItemId());
+		}
 		return gameService.getItem().toString();
 	}
 	
@@ -40,5 +43,10 @@ public class GameController {
 			}
 		}
 		return gameService.getGame().toString();
+	}
+	
+	@RequestMapping("/getItemPage")
+	public void getItemPage() {
+		gameService.getItemPage();
 	}
 }

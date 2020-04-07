@@ -3,6 +3,8 @@ package com.hibernate.spring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.hibernate.spring.entity.Game;
@@ -37,5 +39,12 @@ public class GameService {
 	
 	public List<Game> getGame() {
 		return gameSupport.getGame();
+	}
+	
+	public void getItemPage() {
+		Page<Item> page = itemRepository.findAll(PageRequest.of(0, 3));
+		for (Item item : page.getContent()) {
+			System.out.println(item.getItemId());
+		}
 	}
 }
